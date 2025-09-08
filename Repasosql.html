@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Completa de PL/SQL - Manual de Estudio</title>
+    <style>
+        @page {
+            margin: 2cm;
+            size: A4;
+            @top-center {
+                content: "Guía Completa de PL/SQL";
+            }
+            @bottom-center {
+                content: counter(page);
+            }
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .cover {
+            text-align: center;
+            page-break-after: always;
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .cover h1 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .cover h2 {
+            font-size: 1.5em;
+            font-weight: normal;
+            margin-bottom: 20px;
+        }
+        
+        .cover .subtitle {
+            font-size: 1.2em;
+            font-style: italic;
+            margin-top: 50px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            page-break-before: always;
+            margin-top: 40px;
+        }
+        
+        h2 {
+            color: #34495e;
+            background: linear-gradient(90deg, #ecf0f1, #bdc3c7);
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            margin-top: 30px;
+        }
+        
+        h3 {
+            color: #2980b9;
+            margin-top: 25px;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 5px;
+        }
+        
+        .concept-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .example-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .code-block {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .difficulty-level {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .basic { background-color: #d4edda; color: #155724; }
+        .intermediate { background-color: #fff3cd; color: #856404; }
+        .advanced { background-color: #f8d7da; color: #721c24; }
+        
+        .use-case {
+            background-color: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .warning {
+            background-color: #fff5f5;
+            border-left: 4px solid #e53e3e;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .tip {
+            background-color: #f0fff4;
+            border-left: 4px solid #38a169;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        
+        .toc {
+            page-break-after: always;
+        }
+        
+        .toc ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .toc li {
+            padding: 5px 0;
+            border-bottom: 1px dotted #ccc;
+        }
+        
+        .toc a {
+            text-decoration: none;
+            color: #2c3e50;
+        }
+        
+        .exercise-file {
+            background-color: #f8f9fa;
+            border: 2px solid #6c757d;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .file-header {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 15px;
+            margin: -20px -20px 15px -20px;
+            border-radius: 8px 8px 0 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- PORTADA -->
+    <div class="cover">
+        <h1>GUÍA COMPLETA DE PL/SQL</h1>
+        <h2>Manual de Estudio y Ejercicios Prácticos</h2>
+        <p><strong>Base de Datos Oracle 18c con JDK 17</strong></p>
+        <p><strong>SQL Developer</strong></p>
+        <div class="subtitle">
+            <p>Desde conceptos básicos hasta técnicas avanzadas</p>
+            <p>Versión 2024</p>
+        </div>
+    </div>
+
+    <!-- TABLA DE CONTENIDOS -->
+    <div class="toc">
+        <h1>TABLA DE CONTENIDOS</h1>
+        <ul>
+            <li><a href="#introduccion">1. Introducción</a></li>
+            <li><a href="#estructura-ejercicios">2. Estructura de los Ejercicios</a></li>
+            <li><a href="#conceptos-basicos">3. Conceptos Básicos</a></li>
+            <li><a href="#conceptos-intermedios">4. Conceptos Intermedios</a></li>
+            <li><a href="#conceptos-avanzados">5. Conceptos Avanzados</a></li>
+            <li><a href="#archivos-ejercicios">6. Archivos de Ejercicios</a></li>
+            <li><a href="#casos-uso">7. Casos de Uso Prácticos</a></li>
+            <li><a href="#mejores-practicas">8. Mejores Prácticas</a></li>
+            <li><a href="#resolucion-problemas">9. Resolución de Problemas</a></li>
+        </ul>
+    </div>
+
+    <h1 id="introduccion">1. INTRODUCCIÓN</h1>
+    
+    <div class="concept-box">
+        <h3>¿Qué es PL/SQL?</h3>
+        <p>PL/SQL (Procedural Language/Structured Query Language) es la extensión procedimental de Oracle para SQL. Permite crear programas estructurados con variables, constantes, procedimientos, funciones, y manejo de excepciones.</p>
+    </div>
+
+    <div class="tip">
+        <strong>Configuración del Entorno:</strong>
+        <ul>
+            <li>Oracle Database 18c</li>
+            <li>SQL Developer</li>
+            <li>JDK 17</li>
+            <li>Habilitar DBMS_OUTPUT: <code>SET SERVEROUTPUT ON</code></li>
+        </ul>
+    </div>
+
+    <h1 id="estructura-ejercicios">2. ESTRUCTURA DE LOS EJERCICIOS</h1>
+
+    <p>Los ejercicios están organizados en 8 archivos SQL progresivos:</p>
+
+    <table>
+        <tr>
+            <th>Archivo</th>
+            <th>Tema Principal</th>
+            <th>Nivel</th>
+        </tr>
+        <tr>
+            <td>01_Variables_y_Bloques_Basicos.sql</td>
+            <td>Variables escalares, bind variables, bloques anónimos</td>
+            <td>Básico</td>
+        </tr>
+        <tr>
+            <td>02_Cursores_y_Ciclos.sql</td>
+            <td>Cursores, ciclos FOR y WHILE</td>
+            <td>Intermedio</td>
+        </tr>
+        <tr>
+            <td>03_Registros_y_VArrays.sql</td>
+            <td>Registros normales y DML, VArrays</td>
+            <td>Intermedio</td>
+        </tr>
+        <tr>
+            <td>04_Cursores_Avanzados.sql</td>
+            <td>Cursores con parámetros, cursores complejos</td>
+            <td>Avanzado</td>
+        </tr>
+        <tr>
+            <td>05_Excepciones.sql</td>
+            <td>Manejo de excepciones predefinidas y personalizadas</td>
+            <td>Intermedio</td>
+        </tr>
+        <tr>
+            <td>06_Procedimientos_Funciones.sql</td>
+            <td>Procedimientos y funciones almacenadas</td>
+            <td>Avanzado</td>
+        </tr>
+        <tr>
+            <td>07_Packages.sql</td>
+            <td>Paquetes (packages)</td>
+            <td>Avanzado</td>
+        </tr>
+        <tr>
+            <td>08_Triggers.sql</td>
+            <td>Disparadores (triggers)</td>
+            <td>Avanzado</td>
+        </tr>
+    </table>
+
+    <h1 id="conceptos-basicos">3. CONCEPTOS BÁSICOS</h1>
+
+    <h2>3.1 Variables Escalares</h2>
+    <div class="difficulty-level basic">BÁSICO</div>
+
+    <div class="concept-box">
+        <h3>Definición</h3>
+        <p>Las variables escalares almacenan un solo valor de un tipo de datos específico. Son la base para el almacenamiento temporal de datos en PL/SQL.</p>
+    </div>
+
+    <div class="code-block">
+DECLARE
+    v_nombre VARCHAR2(50) := 'Juan Pérez';
+    v_salario NUMBER(8,2) := 850000.00;
+    v_fecha_ingreso DATE := SYSDATE;
+    v_activo BOOLEAN := TRUE;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Empleado: ' || v_nombre);
+    DBMS_OUTPUT.PUT_LINE('Salario: $' || TO_CHAR(v_salario, '999,999,999.99'));
+END;
+/
+    </div>
+
+    <div class="use-case">
+        <strong>Casos de Uso:</strong>
+        <ul>
+            <li>Almacenar valores temporales en cálculos</li>
+            <li>Parámetros de entrada en procedimientos</li>
+            <li>Contadores en ciclos</li>
+            <li>Flags de control de flujo</li>
+        </ul>
+    </div>
+
+    <h2>3.2 Bind Variables</h2>
+    <div class="difficulty-level basic">BÁSICO</div>
+
+    <div class="concept-box">
+        <h3>Definición</h3>
+        <p>Las bind variables son variables de host que se pueden usar para pasar valores entre el entorno host y PL/SQL, mejorando el rendimiento al evitar análisis repetidos.</p>
+    </div>
+
+    <div class="code-block">
+-- En SQL Developer
+VARIABLE v_empleado_id NUMBER
+VARIABLE v_resultado VARCHAR2(100)
+
+BEGIN
+    :v_empleado_id := 100;
+    :v_resultado := 'Procesado correctamente';
+END;
+/
+
+PRINT v_empleado_id v_resultado
+    </div>
+
+    <div class="use-case">
+        <strong>Casos de Uso:</strong>
+        <ul>
+            <li>Pasar parámetros desde aplicaciones</li>
+            <li>Optimizar consultas repetitivas</li>
+            <li>Intercambio de datos entre sesiones</li>
+        </ul>
+    </div>
+
+    <h2>3.3 Impresiones por Pantalla</h2>
+    <div class="difficulty-level basic">BÁSICO</div>
+
+    <div class="concept-box">
+        <h3>DBMS_OUTPUT.PUT_LINE</h3>
+        <p>Procedimiento para mostrar texto en la consola durante la ejecución de PL/SQL.</p>
+    </div>
+
+    <div class="code-block">
+BEGIN
+    -- Habilitar salida (en SQL Developer)
+    DBMS_OUTPUT.ENABLE(1000000);
+    
+    -- Imprimir línea completa
+    DBMS_OUTPUT.PUT_LINE('Mensaje completo');
+    
+    -- Imprimir sin salto de línea y luego salto
+    DBMS_OUTPUT.PUT('Parte 1 ');
+    DBMS_OUTPUT.PUT('Parte 2');
+    DBMS_OUTPUT.NEW_LINE;
+    
+    -- Formateo de números
+    DBMS_OUTPUT.PUT_LINE('Precio: $' || TO_CHAR(15000, '999,999'));
+END;
+/
+    </div>
+
+    <h2>3.4 Bloques Anónimos Anidados</h2>
+    <div class="difficulty-level basic">BÁSICO</div>
+
+    <div class="concept-box">
+        <h3>Definición</h3>
+        <p>Los bloques anónimos anidados permiten crear subprogramas temporales dentro de un bloque principal, proporcionando mejor organización y alcance de variables.</p>
+    </div>
+
+    <div class="code-block">
+DECLARE
+    v_total NUMBER := 0;
+    v_contador NUMBER := 0;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Bloque principal iniciado');
+    
+    -- Bloque anidado 1
+    DECLARE
+        v_local NUMBER := 100;
+    BEGIN
+        v_total := v_total + v_local;
+        DBMS_OUTPUT.PUT_LINE('Bloque anidado 1: ' || v_local);
+    END;
+    
+    -- Bloque anidado 2
+    DECLARE
+        v_local NUMBER := 200;
+    BEGIN
+        v_total := v_total + v_local;
+        DBMS_OUTPUT.PUT_LINE('Bloque anidado 2: ' || v_local);
+    END;
+    
+    DBMS_OUTPUT.PUT_LINE('Total final: ' || v_total);
+END;
+/
+    </div>
+
+    <div class="use-case">
+        <strong>Casos de Uso:</strong>
+        <ul>
+            <li>Organizar lógica compleja</li>
+            <li>Crear variables con alcance limitado</li>
+            <li>Manejo específico de excepciones por sección</li>
+        </ul>
+    </div>
+
+    <h2>3.5 Condicionales IF</h2>
+    <div class="difficulty-level basic">BÁSICO</div>
+
+    <div class="concept-box">
+        <h3>Estructura IF-THEN-ELSE</h3>
+        <p>Permite ejecutar código de forma condicional basado en expresiones booleanas.</p>
+    </div>
+
+    <div class="code-block">
+DECLARE
+    v_salario NUMBER := 800000;
+    v_categoria VARCHAR2(20);
+    v_bono NUMBER;
+BEGIN
+    IF v_salario > 1500000 THEN
+        v_categoria := 'EJECUTIVO';
+        v_bono := v_salario * 0.15;
+    ELSIF v_salario > 1000000 THEN
+        v_categoria := 'SUPERVISOR';
+        v_bono := v_salario * 0.10;
+    ELSIF v_salario > 500000 THEN
+        v_categoria := 'EMPLEADO';
+        v_bono := v_salario * 0.05;
+    ELSE
+        v_categoria := 'TRAINEE';
+        v_bono := 0;
+    END IF;
+    
+    DBMS_OUTPUT.PUT_LINE('Categoría: ' || v_categoria);
+    DBMS_OUTPUT.PUT_LINE('Bono: $' || TO_CHAR(v_bono, '999,999'));
+END;
+/
+    </div>
+
+    <h2>3.6 Condicionales CASE</h2>
+    <div class="difficulty-level basic">BÁSICO</div>
+
+    <div class="concept-box">
+        <h3>Estructura CASE</h3>
+        <p>Alternativa más elegante a múltiples IF-ELSIF cuando se evalúa una expresión contra múltiples valores.</p>
+    </div>
+
+    <div class="code-block">
+DECLARE
+    v_dia_semana NUMBER := TO_CHAR(SYSDATE, 'D');
+    v_nombre_dia VARCHAR2(20);
+    v_tipo_dia VARCHAR2(20);
+BEGIN
+    -- CASE simple
+    v_nombre_dia := CASE v_dia_semana
+        WHEN 1 THEN 'Domingo'
+        WHEN 2 THEN 'Lunes'
+        WHEN 3 THEN 'Martes'
+        WHEN 4 THEN 'Miércoles'
+        WHEN 5 THEN 'Jueves'
+        WHEN 6 THEN 'Viernes'
+        WHEN 7 THEN 'Sábado'
+        ELSE 'Desconocido'
+    END;
+    
+    -- CASE con condiciones
+    v_tipo_dia := CASE 
+        WHEN v_dia_semana IN (1, 7) THEN 'Fin de semana'
+        WHEN v_dia_semana IN (2, 3, 4, 5, 6) THEN 'Día laboral'
+        ELSE 'Error'
+    END;
+    
+    DBMS_OUTPUT.PUT_LINE('Hoy es ' || v_nombre_dia);
+    DBMS_OUTPUT.PUT_LINE('Tipo: ' || v_tipo_dia);
+END;
+/
+    </div>
+
+    <h1 id="conceptos-intermedios">4. CONCEPTOS INTERMEDIOS</h1>
+
+    <h2>4.1 Cursores Básicos</h2>
+    <div class="difficulty-level intermediate">INTERMEDIO</div>
+
+    <div class="concept-box">
+        <h3>Definición</h3>
+        <p>Los cursores son punteros a conjuntos de resultados que permiten procesar filas de una consulta una por una.</p>
+    </div>
+
+    <div class="code-block">
+DECLARE
+    CURSOR c_empleados IS
+        SELECT id_emp, pnombre_emp, appaterno_emp, sueldo_base
+        FROM empleado
+        WHERE sueldo_base > 500000
+        ORDER BY sueldo_base DESC;
+    
+    v_emp_record c_empleados%ROWTYPE;
+BEGIN
+    OPEN c_empleados;
+    
+    LOOP
+        FETCH c_empleados INTO v_emp_record;
+        EXIT WHEN c_empleados%NOTFOUND;
+        
+        DBMS_OUTPUT.PUT_LINE('ID: ' || v_emp_record.id_emp || 
+                            ' - ' || v_emp_record.pnombre_emp || 
+                            ' ' || v_emp_record.appaterno_emp ||
+                            ' - $' || TO_CHAR(v_emp_record.sueldo_base, '999,999'));
+    END LOOP;
+    
+    CLOSE c_empleados;
+    
+    DBMS_OUTPUT.PUT_LINE('Total procesado: ' || c_empleados%ROWCOUNT);
+END;
+/
+    </div>
+
+    <div class="tip">
+        <strong>Atributos de Cursor:</strong>
+        <ul>
+            <li><code>%FOUND</code>: TRUE si la última operación FETCH encontró una fila</li>
+            <li><code>%NOTFOUND</code>: TRUE si la última operación FETCH no encontró fila</li>
+            <li><code>%ROWCOUNT</code>: Número de filas procesadas hasta el momento</li>
+            <li><code>%ISOPEN</code>: TRUE si el cursor está abierto</li>
+        </ul>
+    </div>
+
+    <h2>4.2 Ciclos FOR con Cursores</h2>
+    <div class="difficulty-level intermediate">INTERMEDIO</div>
+
+    <div class="concept-box">
+        <h3>Cursor FOR Loop</h3>
+        <p>Forma simplificada de procesar cursores que maneja automáticamente la apertura, cierre y fetch del cursor.</p>
+    </div>
+
+    <div class="code-block">
+DECLARE
+    v_total_sueldos NUMBER := 0;
+    v_contador NUMBER := 0;
+BEGIN
+    FOR emp_rec IN (SELECT pnombre_emp, appaterno_emp, sueldo_base
+                    FROM empleado
+                    WHERE sueldo_base BETWEEN 400000 AND 1000000
+                    ORDER BY sueldo_base) LOOP
+        
+        v_contador := v_contador + 1;
+        v_total_sueldos := v_total_sueldos + emp_rec.sueldo_base;
+        
+        DBMS_OUTPUT.PUT_LINE(v_contador || '. ' || 
+                            INITCAP(emp_rec.pnombre_emp || ' ' || emp_rec.appaterno_emp) ||
+                            ' - $' || TO_CHAR(emp_rec.sueldo_base, '999,999'));
+    END LOOP;
+    
+    DBMS_OUTPUT.PUT_LINE('----------------------------------------');
+    DBMS_OUTPUT.PUT_LINE('Total empleados: ' || v_contador);
+    DBMS_OUTPUT.PUT_LINE('Suma total: $' || TO_CHAR(v_total_sueldos, '999,999,999'));
+    DBMS_OUTPUT.PUT_LINE('Promedio: $' || TO_CHAR(v_total_sueldos/v_contador, '999,999'));
+END;
+/
+    </div>
+
+    <h2>4.3 Ciclos WHILE</h2>
+    <div class="difficulty-level intermediate">INTERMEDIO</div>
+
+    <div class="concept-box">
+        <h3>Estructura WHILE LOOP</h3>
+        <p>Ejecuta un bloque de código repetidamente mientras una condición sea verdadera.</p>
+    </div>
+
+    <div class="code-block">
+DECLARE
+    v_contador NUMBER := 1;
+    v_suma NUMBER := 0;
+    v_numero NUMBER;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Números pares del 1 al 20:');
+    
+    WHILE v_contador <= 20 LOOP
+        IF MOD(v_contador, 2) = 0 THEN
+            v_suma := v_suma + v_contador;
+            DBMS_OUTPUT.PUT_LINE('Número: ' || v_contador || 
+                               ' | Suma acumulada: ' || v_suma);
+        END IF;
+        
+        v_contador := v_contador + 1;
+    END LOOP;
+    
+    DBMS_OUTPUT.PUT_LINE('Suma total de pares: ' || v_suma);
+END;
+/
+    </div>
+
+    <h2>4.4 Ciclos FOR Numéricos</h2>
+    <div class="difficulty-level intermediate">INTERMEDIO</div>
+
+    <div class="concept-box">
+        <h3>FOR Loop Numérico</h3>
+        <p>Itera un número específico de veces con un contador automático.</p>
+    </div>
+
+    <div class="code-block">
+DECLARE
+    v_factorial NUMBER := 1;
+    v_fibonacci_anterior NUMBER := 0;
+    v_fibonacci_actual NUMBER := 1;
+    v_fibonacci_siguiente NUMBER;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Tabla del 7:');
+    FOR i IN 1..10 LOOP
+        DBMS_OUTPUT.PUT_LINE('7 x ' || i || ' = ' || (7 * i));
+    END LOOP;
+    
+    DBMS_OUTPUT.PUT_LINE('');
+    DBMS_OUTPUT.PUT_LINE('Factorial de 8:');
+    FOR i IN 1..8 LOOP
+        v_factorial := v_factorial * i;
+        DBMS_OUTPUT.PUT_LINE('!' || i || ' = ' || v_factorial);
+    END LOOP;
+    
+    DBMS_OUTPUT.PUT_LINE('');
+    DBMS_OUTPUT.PUT_LINE('Secuencia Fibonacci (10 términos):');
+    DBMS_OUTPUT.PUT_LINE('F(0) = ' || v_fibonacci_anterior);
+    DBMS_OUTPUT.PUT_LINE('F(1) = ' || v_fibonacci_actual);
+    
+    FOR i IN 2..9 LOOP
+        v_fibonacci_siguiente := v_fibonacci_anterior + v_fibonacci_actual;
+        DBMS_OUTPUT.PUT_LINE('F(' || i || ') = ' || v_fibonacci_siguiente);
+        
+        v_fibonacci_anterior := v_fibonacci_actual;
+        v_fibonacci_actual := v_fibonacci_siguiente;
+    END LOOP;
+END;
+/
+    </div>
+
+    <h2>4.5 Registros (Records)</h2>
+    <div class="difficulty-level intermediate">INTERMEDIO</div>
+
+    <div class="concept-box">
+        <h3>Definición</h3>
+        <p>Los registros son estructuras de datos que agrupan elementos relacionados de diferentes tipos de datos.</p>
+    </div>
+
+    <div class="code-block">
+DECLARE
+    -- Registro usando %ROWTYPE
+    v_empleado empleado%ROWTYPE;
+    
+    -- Registro personalizado
+    TYPE tipo_resumen_empleado IS RECORD (
+        nombre_completo VARCHAR2(100),
+        edad NUMBER,
+        anos_servicio NUMBER,
+        sueldo_categoria VARCHAR2(20),
+        descuentos_totales NUMBER
+    );
+    
+    v_resumen tipo_resumen_empleado;
+    
+BEGIN
+    -- Usar registro %ROWTYPE
+    SELECT * INTO v_empleado
+    FROM empleado
+    WHERE id_emp = 100;
+    
+    DBMS_OUTPUT.PUT_LINE('=== Datos Completos ===');
+    DBMS_OUTPUT.PUT_LINE('ID: ' || v_empleado.id_emp);
+    DBMS_OUTPUT.PUT_LINE('Nombre: ' || v_empleado.pnombre_emp || ' ' || v_empleado.appaterno_emp);
+    DBMS_OUTPUT.PUT_LINE('Sueldo: $' || TO_CHAR(v_empleado.sueldo_base, '999,999'));
+    
+    -- Llenar registro personalizado
+    v_resumen.nombre_completo := INITCAP(v_empleado.pnombre_emp || ' ' || 
+                                        NVL(v_empleado.snombre_emp || ' ', '') ||
+                                        v_empleado.appaterno_emp || ' ' || 
+                                        v_empleado.apmaterno_emp);
+    v_resumen.edad := FLOOR(MONTHS_BETWEEN(SYSDATE, v_empleado.fecha_nac) / 12);
+    v_resumen.anos_servicio := FLOOR(MONTHS_BETWEEN(SYSDATE, v_empleado.fecha_contrato) / 12);
+    v_resumen.sueldo_categoria := CASE 
+        WHEN v_empleado.sueldo_base > 1000000 THEN 'ALTO'
+        WHEN v_empleado.sueldo_base > 500000 THEN 'MEDIO'
+        ELSE 'BÁSICO'
+    END;
+    
+    DBMS_OUTPUT.PUT_LINE('');
+    DBMS_OUTPUT.PUT_LINE('=== Resumen Procesado ===');
+    DBMS_OUTPUT.PUT_LINE('Nombre: ' || v_resumen.nombre_completo);
+    DBMS_OUTPUT.PUT_LINE('Edad: ' || v_resumen.edad || ' años');
+    DBMS_OUTPUT.PUT_LINE('Antigüedad: ' || v_resumen.anos_servicio || ' años');
+    DBMS_OUTPUT.PUT_LINE('Categoría salarial: ' || v_resumen.sueldo_categoria);
+    
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('Empleado no encontrado');
+END;
+/
+    </div>
+
+    <h2>4.6 VARRAYs (Variable Arrays)</h2>
+    <div class="difficulty-level intermediate">INTERMEDIO</div>
+
+    <div class="concept-box">
+        <h3>Definición</h3>
+        <p>Los VARRAYs son arrays de tamaño fijo que almacenan elementos del mismo tipo de datos en posiciones numeradas.</p>
+    </div>
+
+    <div class="code-block">
+DECLARE
+    -- Definir tipo VARRAY
+    TYPE tipo_sueldos_array IS VARRAY(50) OF NUMBER;
+    TYPE tipo_nombres_array IS VARRAY(50) OF VARCHAR2(100);
+    
+    -- Declarar variables VARRAY
+    v_sueldos tipo_sueldos_array := tipo_sueldos_array();
+    v_nombres tipo_nombres_array := tipo_nombres_array();
+    
+    v_total_sueldos NUMBER := 0;
+    v_promedio NUMBER;
+    v_contador NUMBER := 0;
+    
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('=== PROCESANDO CON VARRAYS ===');
+    
+    -- Llenar arrays con datos de empleados
+    FOR
