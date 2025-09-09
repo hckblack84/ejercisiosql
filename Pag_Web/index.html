@@ -1,0 +1,191 @@
+<!DOCTYPE html> <!-- Define el tipo de documento como HTML5 -->
+<html lang="es"> <!-- Indica que el idioma principal de la página es español -->
+<head>
+    <meta charset="UTF-8"> <!-- Establece la codificación de caracteres a UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace la página responsiva en dispositivos móviles -->
+    <title>FreshShop</title> <!-- Título que aparece en la pestaña del navegador -->
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"> <!-- Importa fuentes de Google Fonts -->
+    <link rel="stylesheet" href="style.css"> <!-- Vincula la hoja de estilos CSS externa -->
+</head>
+<body>
+
+<!-- Barra superior -->
+<div class="top-bar"> <!-- Barra superior con promoción y datos de contacto -->
+    <span class="promo">¡10% de descuento! Compra verduras</span> <!-- Mensaje promocional -->
+    <div class="right"> <!-- Sección derecha de la barra superior -->
+        <span>Llámanos: +11 900 800 100</span> | <!-- Teléfono de contacto -->
+        <a href="#">Mi cuenta</a> | <!-- Enlace a la cuenta del usuario -->
+        <a href="#">Nuestra ubicación</a> | <!-- Enlace a la ubicación -->
+    </div>
+</div>
+
+<!-- Header -->
+<header>
+    <div class="logo"> <!-- Sección del logo -->
+        <h2>
+            <img src='img/Huerto Hogar 1.png' alt="Logo"> <!-- Imagen del logo -->
+        </h2>
+    </div>
+
+    <nav> <!-- Menú de navegación principal -->
+        <ul>
+            <li><a href="#" class="active">Inicio</a></li> <!-- Enlace a la página de inicio -->
+            <li><a href="#">Sobre nosotros</a></li> <!-- Enlace a la sección "Sobre nosotros" -->
+            <li><a href="#">Tienda</a></li> <!-- Enlace a la tienda -->
+            <li><a href="#">Galería</a></li> <!-- Enlace a la galería -->
+        </ul>
+    </nav>
+
+    <div class="icons"> <!-- Sección de iconos y búsqueda -->
+        <input type="text" placeholder="Buscar..."> <!-- Campo de búsqueda -->
+        <a href="#" id="carrito-icon">🛒 <span id="cart-count">0</span></a> <!-- Icono de carrito con contador -->
+    </div>
+</header>
+
+<!-- Overlay para cerrar carrito -->
+<div id="carrito-overlay" class="carrito-overlay"></div> <!-- Fondo oscuro para el modal del carrito -->
+
+<!-- Carrito lateral -->
+<div id="carrito-modal" class="carrito-modal"> <!-- Modal lateral del carrito de compras -->
+    <div class="carrito-content">
+        <span id="cerrar-carrito" class="cerrar-btn">&times;</span> <!-- Botón para cerrar el carrito -->
+        <h2>Tu Carrito</h2> <!-- Título del carrito -->
+        <ul id="lista-carrito" class="lista-carrito">
+            <li>No hay productos aún.</li> <!-- Mensaje cuando el carrito está vacío -->
+        </ul>
+        <button class="btn-comprar">Finalizar compra</button> <!-- Botón para finalizar la compra -->
+    </div>
+</div>
+
+<!-- Banner principal -->
+<section class="hero"> <!-- Sección principal de bienvenida -->
+    <div class="hero-content">
+        <h1>Bienvenido a <span class="highlight">HuertoHogar</span></h1> <!-- Título principal con resaltado -->
+        <p>Conectamos productos frescos y locales directamente contigo. Calidad, frescura y sostenibilidad en cada compra.</p> <!-- Descripción -->
+        <button id="btn-comprar">COMPRAR NUEVO</button> <!-- Botón de llamada a la acción -->
+    </div>
+</section>
+
+<!-- Filtro + Productos horizontal -->
+<section class="productos-container"> <!-- Sección de productos y filtros -->
+    <div class="filtro-bar"> <!-- Barra de filtros por categoría -->
+        <button data-category="all" class="active">Todos</button> <!-- Botón para mostrar todos los productos -->
+        <button data-category="fruta">Frutas</button> <!-- Botón para filtrar frutas -->
+        <button data-category="verdura">Verduras</button> <!-- Botón para filtrar verduras -->
+        <button data-category="lacteo">Lácteos</button> <!-- Botón para filtrar lácteos -->
+        <button data-category="organico">Orgánicos</button> <!-- Botón para filtrar orgánicos -->
+        <button data-category="otros">Otros</button> <!-- Botón para filtrar otros productos -->
+    </div>
+
+    <div class="productos-grid"> <!-- Contenedor de productos en formato grid -->
+        <div class="producto" data-category="fruta">
+            <img src="img/manzana.jpg" alt="Manzana"> <!-- Imagen de manzana -->
+            <p>Manzana</p> <!-- Nombre del producto -->
+        </div>
+        <div class="producto" data-category="fruta">
+            <img src="img/platano.jpg" alt="Plátano"> <!-- Imagen de manzana -->
+            <p>Plátano</p> <!-- Nombre del producto -->
+        </div>
+        <div class="producto" data-category="fruta">
+            <img src="img/pera.jpg" alt="Pera"> <!-- Imagen de manzana -->
+            <p>Pera</p> <!-- Nombre del producto -->
+        </div>
+        <div class="producto" data-category="fruta">
+            <img src="img/frutilla.jpg" alt="Fruttila"> <!-- Imagen de manzana -->
+            <p>Frutilla</p> <!-- Nombre del producto -->
+        </div>
+        <div class="producto" data-category="fruta">
+            <img src="img/naranja.jpg" alt="Naranja"> <!-- Imagen de manzana -->
+            <p>Naranja</p> <!-- Nombre del producto -->
+        </div>
+        <div class="producto" data-category="fruta">
+            <img src="img/sandia.jpg" alt="Sandía"> <!-- Imagen de manzana -->
+            <p>Sandía</p> <!-- Nombre del producto -->
+        </div>
+        <div class="producto" data-category="verdura">
+            <img src="img/zanahoria.jpg" alt="Zanahoria"> <!-- Imagen de zanahoria -->
+            <p>Zanahoria</p>
+        </div>
+        <div class="producto" data-category="verdura">
+            <img src="img/papas.jpg" alt="Papa"> <!-- Imagen de zanahoria -->
+            <p>Papa</p>
+        </div>
+        <div class="producto" data-category="verdura">
+            <img src="img/cebolla.jpg" alt="Cebolla"> <!-- Imagen de zanahoria -->
+            <p>Cebolla</p>
+        </div>
+        <div class="producto" data-category="verdura">
+            <img src="img/lechuga.jpg" alt="Lechuga"> <!-- Imagen de zanahoria -->
+            <p>Lechuga</p>
+        </div>
+        <div class="producto" data-category="verdura">
+            <img src="img/repollo.jpg" alt="Repollo"> <!-- Imagen de zanahoria -->
+            <p>Repollo</p>
+        </div>
+        <div class="producto" data-category="verdura">
+            <img src="img/pimiento.jpg" alt="Pimiento"> <!-- Imagen de zanahoria -->
+            <p>Pimiento</p>
+        </div>
+        <div class="producto" data-category="lacteo">
+            <img src="img/leche.jpg" alt="Leche"> <!-- Imagen de leche -->
+            <p>Leche</p>
+        </div>
+        <div class="producto" data-category="lacteo">
+            <img src="img/mantequilla.jpg" alt="Mantequilla"> <!-- Imagen de leche -->
+            <p>Mantequilla</p>
+        </div>
+        <div class="producto" data-category="lacteo">
+            <img src="img/yogurt.jpg" alt="Yogurt"> <!-- Imagen de leche -->
+            <p>Yogurt</p>
+        </div>
+        <div class="producto" data-category="lacteo">
+            <img src="img/queso.jpg" alt="Queso"> <!-- Imagen de leche -->
+            <p>Queso</p>
+        </div>
+        <div class="producto" data-category="organico">
+            <img src="img/tomate-organico.jpg" alt="Tomate Orgánico"> <!-- Imagen de tomate orgánico -->
+            <p>Tomate Orgánico</p>
+        </div>
+        <div class="producto" data-category="organico">
+            <img src="img/apio.jpg" alt="Apio "> <!-- Imagen de tomate orgánico -->
+            <p>Apio</p>
+        </div>
+        <div class="producto" data-category="organico">
+            <img src="img/maiz.jpg" alt="Maiz "> <!-- Imagen de tomate orgánico -->
+            <p>Maiz</p>
+        </div>
+        <div class="producto" data-category="organico">
+            <img src="img/aceite.jpg" alt="Aceite de oliva"> <!-- Imagen de tomate orgánico -->
+            <p>Aceite de oliva</p>
+        </div>
+        <div class="producto" data-category="organico">
+            <img src="img/garbanzo.jpg" alt="Garbanzos"> <!-- Imagen de tomate orgánico -->
+            <p>Garbanzos</p>
+        </div>
+        <div class="producto" data-category="organico">
+            <img src="img/col.jpg" alt="Col rizada"> <!-- Imagen de tomate orgánico -->
+            <p>Col rizada</p>
+        </div>
+        <div class="producto" data-category="otros">
+            <img src="img/miel.jpg" alt="Miel"> <!-- Imagen de miel -->
+            <p>Miel</p>
+        </div>
+        <div class="producto" data-category="otros">
+            <img src="img/almendras.jpg" alt="Almendras"> <!-- Imagen de miel -->
+            <p>Almendras</p>
+        </div>
+        <div class="producto" data-category="otros">
+            <img src="img/te.jpg" alt="Hojas de Té"> <!-- Imagen de miel -->
+            <p>Té</p>
+        </div>
+        <div class="producto" data-category="otros">
+            <img src="img/canela.jpg" alt="Canela"> <!-- Imagen de miel -->
+            <p>Canela</p>
+        </div>
+    </div>
+</section>
+
+<script src="scripts.js"></script> <!-- Vincula el archivo JavaScript externo -->
+</body>
+</html>
